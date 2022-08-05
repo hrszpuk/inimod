@@ -7,6 +7,8 @@ def test():
 
     print(f"[{now()}] importing inimod")
     import inimod
+    f = inimod.ini_open("test.ini")
+    print(f)
 
 
 if __name__ == "__main__":

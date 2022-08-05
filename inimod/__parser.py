@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from __exceptions import FileHandleException
+from inimod.__exceptions import FileHandleException
 
 
 @dataclass
@@ -17,8 +17,8 @@ class Token:
 class Parser:
 
     def __init__(self, filename: str):
-        self.__tokens = self.__lex(Parser.__handle_file(filename))
         self.delimiter = "="  # symbol used to denote key/value declaration
+        self.tokens = self.__lex(Parser.__handle_file(filename))
 
     @classmethod
     def __handle_file(cls, filename: str) -> str:
@@ -26,9 +26,9 @@ class Parser:
             file = open(filename, "r")
             contents: str = file.read()
         except FileNotFoundError as err:
-            raise FileHandleException
+            raise FileHandleException(str(err))
         except OSError as err:
-            raise FileHandleException
+            raise FileHandleException(str(err))
         except Exception as err:
             raise err
         return contents
@@ -74,10 +74,12 @@ class Parser:
                     flush()
                 symbol: str = __raw[index]
                 buffer: str = ""
+                index += 1
                 while index < length and __raw[index] != symbol:
                     buffer += __raw[index]
                     index += 1
                 lexical_tokens.append(Token("STRING", buffer))
+                index += 1
             elif __raw[index].isdigit():
                 if error_buffer != "":
                     flush()
