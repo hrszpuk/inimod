@@ -1,33 +1,6 @@
 from dataclasses import dataclass
 from inimod.__exceptions import FileHandleException
-
-
-@dataclass
-class Token:
-    _type: str
-    value: any
-
-    def __repr__(self):
-        return f"({self._type}, {self.value})"
-
-    def __str__(self):
-        return self.__repr__()
-
-    @property
-    def type(self):
-        return self._type
-
-
-@dataclass
-class Structure:
-    _type: str
-    tokens: list[Token]
-
-    def __repr__(self):
-        return f"(Type: {self._type}, {self.tokens})"
-
-    def __str__(self):
-        return self.__repr__()
+from inimod.__structure import *
 
 
 class Parser:
