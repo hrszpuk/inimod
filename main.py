@@ -7,7 +7,7 @@ def test():
 
     print(f"[{now()}] importing inimod")
     import inimod
-    f = inimod.ini_open("test.ini")
+    f = inimod.read("test.ini")
     print(f)
 
 

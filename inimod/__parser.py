@@ -13,6 +13,22 @@ class Token:
     def __str__(self):
         return self.__repr__()
 
+    @property
+    def type(self):
+        return self._type
+
+
+@dataclass
+class Structure:
+    _type: str
+    tokens: list[Token]
+
+    def __repr__(self):
+        return f"(Type: {self._type}, {self.tokens})"
+
+    def __str__(self):
+        return self.__repr__()
+
 
 class Parser:
 
@@ -134,4 +150,29 @@ class Parser:
             - Expr: NUMBER | STRING | IP_ADDR
 
         """
+        index: int = 0
+        length = len(self.tokens)
+        while index < length:
+            if self.tokens[index].type == "LEFT_BRACKET":
+                self.__parse_section()
+            else:
+                raise Exception
+
+    def __parse_section(self):
+        """
+        Handles parsing ini sections: [section example]
+        """
         pass
+
+    def __parse_key(self):
+        """
+        Handles parsing ini keys: example_key = 100
+        """
+        pass
+
+    def __parse_expr(self):
+        """
+        Handles parsing expressions: 100, "hello", 1.1.1.1
+        """
+        pass
+
