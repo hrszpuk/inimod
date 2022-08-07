@@ -1,13 +1,16 @@
 from dataclasses import dataclass
 from inimod.__exceptions import FileHandleException
+from inimod.__exceptions import UnexpectedTokenException
 from inimod.__structure import *
 
 
 class Parser:
 
-    def __init__(self, filename: str):
-        self.delimiter = "="  # symbol used to denote key/value declaration
+    def __init__(self, filename: str, delimiter: str = "="):
+        self.delimiter = delimiter  # symbol used to denote key/value declaration
+        self.__parse_index: int = 0
         self.tokens = self.__lex(Parser.__handle_file(filename))
+
 
     @classmethod
     def __handle_file(cls, filename: str) -> str:
@@ -113,7 +116,7 @@ class Parser:
                 index += 1
         return lexical_tokens
 
-    def __parse(self):
+    def parse(self):
         """
         __parse handles generating structures from a series of tokens.
         The tokens are generated in __lex, and __parse recognises patterns in these tokens.
@@ -123,10 +126,9 @@ class Parser:
             - Expr: NUMBER | STRING | IP_ADDR
 
         """
-        index: int = 0
         length = len(self.tokens)
-        while index < length:
-            if self.tokens[index].type == "LEFT_BRACKET":
+        while self.__parse_index < length:
+            if self.tokens[self.__parse_index].type == "LEFT_BRACKET":
                 self.__parse_section()
             else:
                 raise Exception
@@ -135,7 +137,28 @@ class Parser:
         """
         Handles parsing ini sections: [section example]
         """
-        pass
+        id_ = []
+        val = self.__increment()
+        if val.type == "IDENTIFIER":
+            id_.append(val)
+            val = self.__increment()
+            while val == "IDENTIFIER":
+                id_.append(val)
+                val = self.__increment()
+            if val.type == "RIGHT_BRACKET":
+                id_ = " ".join(i.value for i in id_)
+                id_ = Token(id_, "IDENTIFIER")
+            else:
+                pass  # Error!
+        else:
+            pass   # Error!
+        keys = []
+        while self.__increment().type == "IDENTIFIER":
+            keys.append(self.__parse_key())
+
+        _struct = Structure()
+        # Finish this btw -- Love Remy
+
 
     def __parse_key(self):
         """
@@ -148,4 +171,12 @@ class Parser:
         Handles parsing expressions: 100, "hello", 1.1.1.1
         """
         pass
+
+    def __increment(self):
+        self.__parse_index += 1
+        if self.__parse_index >= len(self.tokens):
+            raise UnexpectedTokenException("Parser was expecting another Token but couldn't find it! You may have an unfinished statement somewhere...")
+        else:
+            return self.tokens[self.__parse_index]
+
 
