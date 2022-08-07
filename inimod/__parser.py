@@ -11,7 +11,6 @@ class Parser:
         self.__parse_index: int = 0
         self.tokens = self.__lex(Parser.__handle_file(filename))
 
-
     @classmethod
     def __handle_file(cls, filename: str) -> str:
         try:
@@ -151,14 +150,13 @@ class Parser:
             else:
                 pass  # Error!
         else:
-            pass   # Error!
+            pass  # Error!
         keys = []
         while self.__increment().type == "IDENTIFIER":
             keys.append(self.__parse_key())
 
         _struct = Structure()
         # Finish this btw -- Love Remy
-
 
     def __parse_key(self):
         """
@@ -175,8 +173,7 @@ class Parser:
     def __increment(self):
         self.__parse_index += 1
         if self.__parse_index >= len(self.tokens):
-            raise UnexpectedTokenException("Parser was expecting another Token but couldn't find it! You may have an unfinished statement somewhere...")
+            raise UnexpectedTokenException(
+                "Parser was expecting another Token but couldn't find it! You may have an unfinished statement somewhere...")
         else:
             return self.tokens[self.__parse_index]
-
-
