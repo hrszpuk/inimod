@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from inimod.__token import Token
+from inimod.token import Token
 from inimod.__key import Key
 
 

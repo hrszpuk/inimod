@@ -7,8 +7,8 @@ def test():
 
     print(f"[{now()}] importing inimod")
     import inimod
-    f = inimod.read("test.ini")
-    print(f)
+    with open("test.ini", "r") as f:
+        print(inimod.lexer.Lexer(f.read()).analyse())
 
 
 if __name__ == "__main__":

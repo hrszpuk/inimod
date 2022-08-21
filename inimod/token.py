@@ -1,5 +1,3 @@
-
-
 class Token:
     """
     Stores the necessary information for a lexical token.
