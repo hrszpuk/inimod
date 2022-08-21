@@ -47,6 +47,7 @@ class Lexer:
                     buffer += self.code[index]
                     index += 1
 
+                buffer = buffer[:len(buffer)-1] if buffer.endswith(" ") else buffer
                 self.tokens.append(token.Token("IDENTIFIER", buffer))
 
             elif self.code[index] == "[":
