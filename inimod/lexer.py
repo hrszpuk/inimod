@@ -43,7 +43,7 @@ class Lexer:
                 buffer = self.code[index]
                 index += 1
 
-                while index < length and self.code[index].isalnum():
+                while index < length and (self.code[index].isalnum() or self.code[index] in "_-+ "):
                     buffer += self.code[index]
                     index += 1
 
