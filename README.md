@@ -4,23 +4,13 @@ Easy to use Python library for creating, reading, writing, and appending to ini 
 ## Installation
 
 ### Through PIP
-
-
-### Through download
+// TODO set up pip account and profile for inimod
+// TODO set up GitHub action to handle updating production
 
 
 ## Usage
-
-### Reading ini files
-
-
-### Writing ini files
-
-
-### Creating ini files
-
-
-### Appending ini files
+// Reading/writing config files
 
 
 ## Contributing
+// Need the contribution chart here
