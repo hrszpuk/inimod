@@ -1,16 +1,51 @@
-# inimod
-Easy to use Python library for creating, reading, writing, and appending to ini config files (.ini files).
+<p align="center">
+    <img src=".github/inimod-logo.png" alt="inimod logo">
+</p>
 
-## Installation
+<p align="center">
+    :snake: A pure Python ini config file reader and generator!
+</p>
 
-### Through PIP
-// TODO set up pip account and profile for inimod
-// TODO set up GitHub action to handle updating production
+<p align="center">
+<a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+<a href="https://github.com/hrszpuk"><img src="https://img.shields.io/github/followers/hrszpuk?style=social"></a>
+<a href="https://twitter.com/hrszpuk"><img src="https://img.shields.io/twitter/follow/hrszpuk?style=social"></a>
+<a href="https://github.com/hrszpuk/inimod/issues"><img src="https://img.shields.io/github/issues/hrszpuk/rectx"></a>
+</p>
 
+<p align="center">
+    inimod is a well documented purely Python config file reader and generator!<br>
+    inimod can read .ini files into Python dictionaries, and generate .ini files from Python dictionaries.
+</p>
 
 ## Usage
-// Reading/writing config files
+
+### Loading .ini file
+The library will read from a string entered using the `load` function as shown below.
+
+```py
+import inimod 
+
+# Read the .ini file and use inimod.load to convert string into a dictionary
+with open("example.ini", 'r') as f:
+    dict = inimod.load(f.read())
+```
+
+### Generating a .ini file
+After modifying a .ini file's dictionary contents we can generate a .ini file again using the `dump` function as shown below.
+
+```py 
+import inimod
+
+file = open("new_file.ini", 'w')  # Create .ini file
+file.write(inimod.dump(dict))  # Write "dict" (not defined in this scope) to file!
+```
 
 
-## Contributing
-// Need the contribution chart here
+## Contributors
+Contributing helps keep this library safe and up to date. 
+If you want to help, why not create an issue?
+
+<a href="https://github.com/hrszpuk/inimod/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=hrszpuk/inimod" />
+</a>
