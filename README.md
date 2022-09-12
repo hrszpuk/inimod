@@ -18,14 +18,6 @@
     inimod can read .ini files into Python dictionaries, and generate .ini files from Python dictionaries.
 </p>
 
-## Installation
-
-### Using PIP
-If you have pip installed, you can simply install `inimod` using the command below:
-``` 
-pip install inimod
-```
-
 ## Usage
 
 ### Converting a .ini file to a dictionary
