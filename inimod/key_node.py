@@ -11,5 +11,6 @@ class KeyNode(Node):
         self.identifier = identifier
         self.delimiter = delimiter
         self.expr = expr_node
+        self.type = "KEY"
 
         super().__init__([identifier, delimiter, expr_node])

@@ -15,6 +15,7 @@ class Token:
             "IP_ADDR",
             "DELIMITER",
             "COMMENT",
+            "BAD"
         ]
         self.__type: str = _type
         self.__value: any = _value

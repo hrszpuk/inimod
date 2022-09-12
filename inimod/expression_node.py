@@ -9,6 +9,8 @@ class ExpressionNode(Node):
 
     def __init__(self, literal: Token):
         super().__init__([literal])
-        self.literal = literal
-        self.value = self.literal.value
+        self.literal = literal.value
+        if literal.type == "INTEGER":
+            self.literal = int(literal.value)
+        self.type = "EXPRESSION"
 
