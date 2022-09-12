@@ -10,7 +10,7 @@
 <a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 <a href="https://github.com/hrszpuk"><img src="https://img.shields.io/github/followers/hrszpuk?style=social"></a>
 <a href="https://twitter.com/hrszpuk"><img src="https://img.shields.io/twitter/follow/hrszpuk?style=social"></a>
-<a href="https://github.com/hrszpuk/inimod/issues"><img src="https://img.shields.io/github/issues/hrszpuk/rectx"></a>
+<a href="https://github.com/hrszpuk/inimod/issues"><img src="https://img.shields.io/github/issues/hrszpuk/inimod"></a>
 </p>
 
 <p align="center">
@@ -18,9 +18,17 @@
     inimod can read .ini files into Python dictionaries, and generate .ini files from Python dictionaries.
 </p>
 
+## Installation
+
+### Using PIP
+If you have pip installed, you can simply install `inimod` using the command below:
+``` 
+pip install inimod
+```
+
 ## Usage
 
-### Loading .ini file
+### Converting a .ini file to a dictionary
 The library will read from a string entered using the `load` function as shown below.
 
 ```py
@@ -28,17 +36,7 @@ import inimod
 
 # Read the .ini file and use inimod.load to convert string into a dictionary
 with open("example.ini", 'r') as f:
-    dict = inimod.load(f.read())
-```
-
-### Generating a .ini file
-After modifying a .ini file's dictionary contents we can generate a .ini file again using the `dump` function as shown below.
-
-```py 
-import inimod
-
-file = open("new_file.ini", 'w')  # Create .ini file
-file.write(inimod.dump(dict))  # Write "dict" (not defined in this scope) to file!
+    dictionary = inimod.load(f.read())
 ```
 
 
